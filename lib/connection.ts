@@ -1,9 +1,9 @@
-const EventEmitter = require("events").EventEmitter
-const WebSocket = require("isomorphic-ws")
+import { EventEmitter } from 'events'
+import WebSocket from 'isomorphic-ws'
 
 class Connection extends EventEmitter {
 
-    constructor(websocket) {
+    constructor(websocket: WebSocket) {
         super()
         this.ws = websocket
         this.__connectedClients = 0
@@ -85,7 +85,7 @@ class NotificationStream extends EventEmitter{
         this.ws.addEventListener("error", this._errorHandler)
     }
 
-    send(data){
+    send(data) {
         //TODO: test send
         this.ws.send(JSON.stringify(data))
     }

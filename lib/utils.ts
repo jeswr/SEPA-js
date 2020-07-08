@@ -1,9 +1,9 @@
 const { Url } = require('url');
-const util = require('util');
-const deepmerge = require('deepmerge')
+import util from 'util';
+import deepmerge from 'deepmerge';
 
 
-module.exports.createURI = function (protocol,base,port,path) {
+module.exports.createURI = function (protocol, base, _port: number | undefined, path: string | undefined) {
   if (path !== undefined && !path.startsWith("/")) {
     throw "path must starts with /"
   }
@@ -28,11 +28,11 @@ module.exports.createURI = function (protocol,base,port,path) {
   return url
 };
 
-module.exports.mergeWithDefaults = function (defaults,user) {
+module.exports.mergeWithDefaults = function (defaults, user) {
   return mergeWithAgent(defaults,user);
 }
 
-function mergeWithAgent(defaults,user) {
+function mergeWithAgent(defaults, user) {
   let result
 
   if (user.options && user.options.httpsAgent) {
